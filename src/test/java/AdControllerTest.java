@@ -18,6 +18,7 @@ public class AdControllerTest {
     @Before
     public void setUp() {
         // prepare DB
+    	Thread.sleep(10000);
     }
 
     @Test
