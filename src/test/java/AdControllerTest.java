@@ -16,7 +16,7 @@ import static org.junit.Assert.assertTrue;
 
 public class AdControllerTest {
 
-    private static final String url = "http://localhost:8090";
+    private static final String url = "http://localhost:8089";
 
     @Before
     public void setUp() {
