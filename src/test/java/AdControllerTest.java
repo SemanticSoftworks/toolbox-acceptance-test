@@ -1,4 +1,5 @@
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -9,6 +10,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertTrue;
 
 
 public class AdControllerTest {
@@ -32,10 +35,16 @@ public class AdControllerTest {
                 .accept(MediaType.APPLICATION_JSON)
                 .get();
         String str = res.readEntity(String.class);
-        Gson gson = new Gson();
+        Gson gson = new GsonBuilder().serializeNulls().create();
+        Ad refAd = new Ad();
+        refAd.setAdId(1);
+        refAd.setUser(12);
+        refAd.setDescription("Nails not included");
+        refAd.setTitle("Hammer");
+        refAd.setCategory("Manual");
+        refAd.setDuration(null);
 
-
-        assertEquals("", str);
+        assertEquals(gson.toJson(refAd), str);
     }
 
     @Test
@@ -67,7 +76,7 @@ public class AdControllerTest {
                 .get();
         String str = res.readEntity(String.class);
 
-        assertEquals("[]", str);
+        assertTrue(str.length() >= 2);
 
     }
 }
