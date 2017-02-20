@@ -36,12 +36,8 @@ public class AdControllerTest {
                 .get();
         String str = res.readEntity(String.class);
         Gson gson = new GsonBuilder().serializeNulls().create();
-        Ad refAd = new Ad();
-        refAd.setAdId(1);
-        refAd.setUser(12);
-        refAd.setDescription("Nails not included");
-        refAd.setTitle("Hammer");
-        refAd.setCategory("Manual");
+        Ad refAd = new Ad(1, "Manual", "Nails not included", null, 12, "Hammer");
+
         refAd.setDuration(null);
 
         assertEquals(gson.toJson(refAd), str);
